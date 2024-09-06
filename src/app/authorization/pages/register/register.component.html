@@ -1,0 +1,226 @@
+<section class="grid grid-cols-1 md:grid-cols-2 justify-center">
+    <div>
+        <div class="text-main">
+            <h1 class="mb-2">¡Regístrate!</h1>
+            <div class="mt-5 mb-9">
+                <p class="subtitle">Da el primer paso y solicita un crédito para tu Mipyme.</p>
+                <p class="subtitle">Diligencia los siguientes campos:</p>
+            </div>
+        </div>
+
+        <form 
+            [formGroup]="registrationForm" (ngSubmit)="onSubmit()" 
+            class="grid grid-rows-8 justify-items-center w-full self-start gap-5"
+        >
+
+            <div class="w-full">
+                <div class="flex flex-col">
+                    <div class="flex items-center justify-between">
+                        <label for="NIT">NIT de tu empresa*</label>
+                        <p *ngIf="registrationForm.get('NIT')?.invalid && registrationForm.get('NIT')?.touched">
+                            <small class="text-red-500">*{{'Este campo es obligatorio'}}</small>
+                        </p>
+                    </div>
+                    <div class="w-full">
+                        <input 
+                            formControlName="NIT" 
+                            type="text" 
+                            class="w-full"
+                            [ngClass]="{
+                                'invalid-input': registrationForm.get('NIT')?.invalid && registrationForm.get('NIT')?.touched
+                            }"
+                        >
+                    </div>
+                </div>
+            </div>
+            
+            <div class="w-full">
+                <div class="flex flex-col">
+                    <div class="flex items-center justify-between">
+                        <label for="email">Correo de tu empresa*</label>
+                        <p *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
+                            <small class="text-red-500">*Por favor, ingresa un correo electrónico válido.</small>
+                        </p>
+                    </div>
+                    <input 
+                        formControlName="email" 
+                        type="email" 
+                        class="w-full"
+                        [ngClass]="{
+                            'invalid-input': registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched
+                        }"
+                    >
+                </div>
+            </div>
+    
+            <div class="w-full">
+                <div class="flex flex-col">
+                    <div class="flex items-center justify-between">
+                        <label for="mobile">Número de celular*</label>
+                        <p *ngIf="registrationForm.get('mobile')?.invalid && registrationForm.get('mobile')?.touched">
+                            <small class="text-red-500">*Por favor, ingresa un número de celular válido.</small>
+                        </p>
+                    </div>
+                    <input 
+                        formControlName="mobile" 
+                        type="text" 
+                        class="w-full"
+                        [ngClass]="{
+                            'invalid-input': registrationForm.get('mobile')?.invalid && registrationForm.get('mobile')?.touched
+                        }"
+                    >
+                </div>
+            </div>
+
+            <div class="w-full">
+                <div class="flex flex-col">
+                    <div class="flex items-center justify-between">
+                      <label for="password">Crea tu contraseña*</label>
+                      <p *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
+                        <small class="text-red-500">La contraseña debe tener al menos 8 caracteres.</small>
+                      </p>
+                    </div>
+                    <div class="relative">
+                        <input 
+                            formControlName="password" 
+                            [type]="passwordFieldType" 
+                            class="w-full"
+                            [ngClass]="{
+                            'invalid-input': registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched
+                            }"
+                        >
+                       <button 
+                            type="button" 
+                            (click)="togglePasswordVisibility()" 
+                            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-transparent border-none cursor-pointer"
+                            >
+                            <img 
+                                [src]="passwordFieldType === 'password' ? '/assets/svgs/view.svg' : '/assets/svgs/view-off.svg'"
+                                alt="Toggle visibility"
+                                class="w-6 h-6 mt-2"
+                            >
+                        </button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="w-full">                
+                <div class="flex flex-col">
+                    <div class="flex items-center justify-between">
+                        <label for="confirmPassword">Repite tu contraseña*</label>
+                        <p *ngIf="matchPassword && registrationForm.get('repeatPassword')?.touched">
+                        <small class="text-red-500">Las contraseñas no coinciden.</small>
+                        </p>
+                    </div>
+                    <div class="w-full relative">
+                        <input 
+                        formControlName="repeatPassword" 
+                        [type]="confirmPasswordFieldType" 
+                        (ngModelChange)="Passwordcoincide()" onkeypress="return (event.charCode != 60 && event.charCode !=62)"
+                        class="w-full pr-12"
+                        [ngClass]="{
+                            'invalid-input': matchPassword && registrationForm.get('repeatPassword')?.touched
+                        }"
+                        >
+                        <button 
+                        type="button" 
+                        (click)="toggleConfirmPasswordVisibility()" 
+                        class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-transparent border-none cursor-pointer"
+                        >
+                        <img 
+                            [src]="confirmPasswordFieldType === 'password' ? '/assets/svgs/view.svg' : '/assets/svgs/view-off.svg'"
+                            alt="Toggle visibility"
+                            class="w-6 h-6 mt-2"
+                        >
+                        </button>
+                    </div>
+                </div>
+            </div>
+              
+            <div class="flex flex-col space-y-5 w-full">
+                <div class="flex items-center">
+                  <input 
+                    type="checkbox" 
+                    id="termConditions" 
+                    class="custom-checkbox"
+                    [checked]="isTermsChecked"
+                    (change)="onTermsChange($event)"
+                  >
+                  <label for="termConditions" class="checkbox-label ml-3">Autorización de los términos y condiciones de la plataforma</label>
+                </div>
+                
+                <div class="flex items-center">
+                  <input 
+                    type="checkbox" 
+                    id="dataTreatment" 
+                    class="custom-checkbox"
+                    [checked]="isDataChecked"
+                    (change)="onDataChange($event)"
+                  >
+                  <label for="dataTreatment" class="checkbox-label ml-3">Autorización de tratamiento de datos</label>
+                </div>
+            </div>
+    
+            <div class="flex justify-center mt-3 relative">
+    
+                <app-alert #alert></app-alert>
+    
+                <button 
+                    type="submit" 
+                    [disabled]="isFormInvalid()" 
+                    [ngClass]="{
+                        'valid-button': !isFormInvalid(),
+                        'disabled-button cursor-not-allowed': isFormInvalid()
+                    }"
+                    class="submit relative z-10"
+                >
+                    Ingresar
+                </button>
+            </div>
+    
+        </form>
+    </div>
+
+    <div class="hidden md:grid justify-items-center min-h-[864px] bg-secondary w-full" style="padding: 52.5px 0;">
+        <div>
+            <img src="/assets/svgs/logo-xl.svg" alt="">
+        </div>
+        <div class="text-center">
+            <p class="title-rigth-box">Crédito para empresas</p>
+            <p class="subtitle-rigth-box">¡Solicítalo hoy mismo!</p>
+        </div>
+
+        <div class="my-24">
+            <img src="/assets/svgs/maletin-xl.svg" alt="">
+        </div>
+        <p class="body-title-rigth-box">Si eres persona jurídica con más de 6 meses de constitución</p>
+
+        <div class="box-radio flex items-center justify-center">
+            <img src="/assets/svgs/steps.svg" alt="">
+        </div>
+    </div>
+</section>
+
+
+<app-modal #termsAndConditions title="Términos y condiciones">
+    <ng-container content>
+        <p class="text-modal">{{ message }}</p>
+        <br>
+        <p class="text-modal">{{ message }}</p>
+    </ng-container>
+    <ng-container footer>
+        <button class="btn-modal-primary" (click)="acceptTerms()">Aceptar</button>
+    </ng-container>
+</app-modal>
+
+<app-modal #DataTreatment title="Tratamiento de Datos">
+    <ng-container content>
+        <p class="text-modal">{{ message }}</p>
+        <br>
+        <p class="text-modal">{{ message }}</p>
+    </ng-container>
+    <ng-container footer>
+        <button class="btn-modal-primary" (click)="acceptData()">Aceptar</button>
+    </ng-container>
+</app-modal>
+

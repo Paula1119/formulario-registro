@@ -1,0 +1,13 @@
+<div *ngIf="visibleMessage" class="alert z-50">
+    <div [ngClass]="{
+        'alert-success': type === 'success',
+        'alert-error': type === 'error',
+        'alert-info': type === 'info'
+    }"
+        class="border rounded-lg p-4 mb-4 flex items-center space-x-4">
+        <span class="flex-1 text-alert">{{ message }}</span>
+        <button #buttonMessage (click)="closeMessage()" class="text-xl font-bold">
+            <img src="/assets/svgs/close.svg" alt="">
+        </button>
+    </div>
+</div>

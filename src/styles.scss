@@ -1,0 +1,147 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+// TEXT CUSTOM
+
+body, h1, h2, p, span, label, button {
+    font-family: Switzer, sans-serif;;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 31.68px;
+    color: #2F2727;
+}
+
+.subtitle {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 21.12px;
+    color: #2F2727;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18.48px;
+    color: #6E6D6D;
+}
+
+.checkbox-label {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18.48px;
+    color: #000000;
+}
+
+.text-modal {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15.84px;
+    color: #2C2D56;
+}
+
+// COLORS CUSTOM
+.bg-primary {
+    background: #2C2D56;
+}
+
+.bg-secondary {
+    background: #4865EF;
+}
+
+// FORM CUSTOM
+
+input[type=text], 
+input[type=email],
+input[type=password] {
+    height: 37px;
+    border-radius: 8px;
+    background: #F2F2F2;
+    margin-top: 8px;
+    padding: 0 10px;
+}
+
+input[type=text]:focus, 
+input[type=email]:focus, 
+input[type=password]:focus {
+    border: 1px solid #4865EF;
+    outline: none; 
+    transition: border-color 0.3s ease; 
+}
+
+form {
+    padding: 0px 106px 52.5px 60px;
+}
+
+.text-main {
+    padding: 52.5px 106px 0px 60px;
+}
+
+@media (max-width: 640px) {
+    form {
+        padding: 22.5px 12px;
+    }
+
+    .text-main {
+        padding: 22.5px 12px 0px 12px;
+    }
+}
+
+.custom-checkbox {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #6E6D6D; 
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+}
+
+.custom-checkbox:checked {
+    background-color: #00DEC1;
+    border-color: #00DEC1; 
+    color: #FFFFFF;
+}
+
+.custom-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 6px;
+    width: 4px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.invalid-input {
+    border: 1px solid #FF7362
+}
+
+
+// MODALS
+.btn-modal-primary {
+    height:41px;
+    padding: 10px 40px 10px 40px;
+    gap: 10px;
+    border-radius: 20px;
+    background: #00DEC1;
+}
+
+
+// BUTTONS
+.valid-button {
+    background: #00DEC1;
+}
+
+.disabled-button {
+    color: #A8A8A8;
+    background: #ECECEC;
+}

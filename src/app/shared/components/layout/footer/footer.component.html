@@ -1,0 +1,16 @@
+<footer class="grid grid-cols-1 md:grid-cols-2 items-center px-12 h-[138px] md:h-[90px] bg-primary-100 w-full ">
+    <div class="flex items-center justify-center md:justify-start gap-24 w-full">
+        <img class="" src="/assets/svgs/logo.svg" alt="" srcset="">
+        <p class="hidden md:block">Si requieres acompañamiento o tienes alguna duda, contáctanos.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 items-center justify-items-center md:justify-items-end w-full gap-3 md:gap-0">
+        <div class="flex items-center">
+            <img src="/assets/svgs/telefono.svg" alt="Phone Icon">
+            <a href="tel:+6014292636" class="ml-3 hover:underline">(601) 4292636</a>
+        </div>
+        <div class="flex items-center">
+            <img src="/assets/svgs/correo.svg" alt="Email Icon">
+            <a [href]="'mailto:' + emailAddress" class="ml-3 hover:underline">{{ emailAddress }}</a>
+        </div>
+    </div>
+</footer>
