@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "frontend-vinculacion": {
+    "formulario-registro": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/frontend-vinculacion",
+            "outputPath": "dist/formulario-registro",
+            "sourceMap": true,
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -69,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "frontend-vinculacion:build:production"
+              "buildTarget": "formulario-registro:build:production"
             },
             "development": {
-              "buildTarget": "frontend-vinculacion:build:development"
+              "buildTarget": "formulario-registro:build:development"
             }
           },
           "defaultConfiguration": "development"
